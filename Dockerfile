@@ -44,7 +44,6 @@ RUN apt-get -y install \
     php-gd \
     php-json \
     php-ldap \
-    php-libxml \
     php-mbstring \
     php-mcrypt \
     php-mysql \
