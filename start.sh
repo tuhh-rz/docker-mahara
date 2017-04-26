@@ -23,7 +23,7 @@ sed -i 's/allow_call_time_pass_reference.*/allow_call_time_pass_reference off/g'
 
 sed -i 's/<\/VirtualHost>/<Directory \/var\/www\/html>\nAllowOverride ALL\n<\/Directory>\n<\/VirtualHost>/' /etc/apache2/sites-available/000-default.conf
 
-rsync -rc /tmp/mahara/* "/var/www/html"
+rsync -rc /tmp/mahara/htdocs/* "/var/www/html"
 chown -Rf www-data.www-data "/var/www/html"
 
 chmod +x /etc/apache2/foreground.sh
