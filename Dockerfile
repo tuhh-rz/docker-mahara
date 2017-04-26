@@ -56,8 +56,14 @@ RUN apt-get -y install \
     php-xmlrpc \
     php-memcache \
     libphp-adodb \
-    php-pspell \
-    make
+    php-pspell
+
+RUN apt-get -y install \
+    make \
+    npm \
+    nodejs-legacy
+    
+RUN npm install -g gulp
 
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
 RUN cd /tmp/mahara; git checkout 17.04_STABLE; make css
