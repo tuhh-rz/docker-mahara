@@ -1,5 +1,8 @@
 #!/bin/bash
 
+mkdir -p /var/local/majara
+chown -Rf www-data:www-data /var/local/mahara/
+
 chown -Rf www-data.www-data /var/www/html/
 
 #register_globals off
@@ -37,6 +40,7 @@ sed -i 's/\$cfg->dbport.*/\$cfg->dbport = \x27'${DB_PORT}'\x27/g' /var/www/html/
 sed -i 's/\$cfg->dbname.*/\$cfg->dbname = \x27'${DB_NAME}'\x27/g' /var/www/html/config.php
 sed -i 's/\$cfg->dbuser.*/\$cfg->dbuser = \x27'${DB_USER}'\x27/g' /var/www/html/config.php
 sed -i 's/\$cfg->dbpass.*/\$cfg->dbpass = \x27'${DB_PASS}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dataroot.*/\$cfg->dataroot = \x27'${DATA_ROOT}'\x27/g' /var/www/html/config.php
 
 chmod +x /etc/apache2/foreground.sh
 
