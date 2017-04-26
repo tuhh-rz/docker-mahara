@@ -15,7 +15,7 @@ sed -i 's/magic_quotes_runtime.*/magic_quotes_runtime off/g' /etc/php/7.0/apache
 sed -i 's/magic_quotes_sybase.*/magic_quotes_sybase off/g' /etc/php/7.0/apache2/php.ini
 sed -i 's/magic_quotes_gpc.*/magic_quotes_gpc = off/g' /etc/php/7.0/apache2/php.ini
 sed -i 's/log_errors.*/log_errors on/g' /etc/php/7.0/apache2/php.ini
-sed -i 's/allow_call_time_pass_reference.*/allow_call_time_pass_reference off/g' /etc/php/7.0/fpm/php.ini
+sed -i 's/allow_call_time_pass_reference.*/allow_call_time_pass_reference off/g' /etc/php/7.0/apache2/php.ini
 
 ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
 
