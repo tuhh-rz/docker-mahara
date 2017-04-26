@@ -56,7 +56,8 @@ RUN apt-get -y install \
     php-xmlrpc \
     php-memcache \
     libphp-adodb \
-    php-pspell
+    php-pspell \
+    make
 
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
 RUN cd /tmp/mahara; git checkout 17.04_STABLE
