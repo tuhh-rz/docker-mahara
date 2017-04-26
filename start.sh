@@ -32,11 +32,11 @@ cp /var/www/html/config-dist.php /var/www/html/config.php
 #$cfg->dbuser   = '';
 #$cfg->dbpass   = '';
 sed -i 's/\$cfg->dbtype.*/\$cfg->dbtype = \x27'${DB_TYPE}'\x27/g' /var/www/html/config.php
-sed -i 's/\$cfg->dbtype.*/\$cfg->dbhost = \x27'${DB_HOST}'\x27/g' /var/www/html/config.php
-sed -i 's/\$cfg->dbtype.*/\$cfg->dbport = \x27'${DB_PORT}'\x27/g' /var/www/html/config.php
-sed -i 's/\$cfg->dbtype.*/\$cfg->dbname = \x27'${DB_NAME}'\x27/g' /var/www/html/config.php
-sed -i 's/\$cfg->dbtype.*/\$cfg->dbuser = \x27'${DB_USER}'\x27/g' /var/www/html/config.php
-sed -i 's/\$cfg->dbtype.*/\$cfg->dbpass = \x27'${DB_PASS}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbhost.*/\$cfg->dbhost = \x27'${DB_HOST}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbport.*/\$cfg->dbport = \x27'${DB_PORT}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbname.*/\$cfg->dbname = \x27'${DB_NAME}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbuser.*/\$cfg->dbuser = \x27'${DB_USER}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbpass.*/\$cfg->dbpass = \x27'${DB_PASS}'\x27/g' /var/www/html/config.php
 
 chmod +x /etc/apache2/foreground.sh
 
