@@ -41,6 +41,7 @@ sed -i 's/\$cfg->dbname.*/\$cfg->dbname = \x27'${DB_NAME}'\x27;/g' /var/www/html
 sed -i 's/\$cfg->dbuser.*/\$cfg->dbuser = \x27'${DB_USER}'\x27;/g' /var/www/html/config.php
 sed -i 's/\$cfg->dbpass.*/\$cfg->dbpass = \x27'${DB_PASS}'\x27;/g' /var/www/html/config.php
 sed -i 's/\$cfg->dataroot.*/\$cfg->dataroot = \x27'${DATA_ROOT//\//\\/}'\x27;/g' /var/www/html/config.php
+sed -i 's/\$cfg->passwordsaltmain.*/\$cfg->passwordsaltmain = \x27'${PASSWORD_SALT_ADMIN}'\x27;/g' /var/www/html/config.php
 
 chmod +x /etc/apache2/foreground.sh
 
