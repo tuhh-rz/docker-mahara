@@ -11,8 +11,9 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 RUN apt-get -y install \
-    git
-    
+    git \
+    supervisord
+
 # Mahara requires PHP version 5.4 or later. The "magic_quotes" and "register_globals"
 # settings should be turned off (which is the default on modern PHP installations).
 #
@@ -37,7 +38,7 @@ RUN apt-get -y install \
 # zlib (optional)
 # adodb (optional; improves performance)
 # enchant or pspell (optional; for TinyMCE spellcheck button)
-    
+
 RUN apt-get -y install \
     php \
     php-curl \
@@ -54,7 +55,7 @@ RUN apt-get -y install \
     php-memcache \
     libphp-adodb \
     php-pspell
-    
+
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
 RUN cd /tmp/mahara; git checkout 17.04_STABLE
 

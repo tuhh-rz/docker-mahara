@@ -26,4 +26,4 @@ sed -i 's/<\/VirtualHost>/<Directory \/var\/www\/html>\nAllowOverride ALL\n<\/Di
 rsync -rc /tmp/mahara/* "/var/www/html"
 chown -Rf www-data.www-data "/var/www/html"
 
-/usr/local/bin/supervisord -n -c /etc/supervisord.conf
+/usr/bin/supervisord -n -c /etc/supervisord.conf
