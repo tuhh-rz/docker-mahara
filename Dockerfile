@@ -57,3 +57,10 @@ RUN apt-get -y install \
     
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
 RUN cd /tmp/mahara; git checkout 17.04_STABLE
+
+ADD ./start.sh /start.sh
+ADD ./foreground.sh /etc/apache2/foreground.sh
+ADD ./conf/supervisord.conf /etc/supervisord.conf
+
+EXPOSE 80 443
+CMD ["/bin/bash", "/start.sh"]
