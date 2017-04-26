@@ -60,7 +60,6 @@ RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
 RUN cd /tmp/mahara; git checkout 17.04_STABLE
 
 RUN rm /etc/apache2/sites-enabled/*
-ADD ./conf/default-ssl.conf /etc/apache2/sites-enabled
 ADD ./conf/default.conf /etc/apache2/sites-enabled
 
 ADD ./start.sh /start.sh
