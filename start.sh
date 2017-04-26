@@ -21,7 +21,7 @@ sed -i 's/allow_call_time_pass_reference.*/allow_call_time_pass_reference off/g'
 
 #sed -i 's/<\/VirtualHost>/<Location \/Shibboleth.sso>\nSetHandler shib\nAuthType None\nRequire all granted\n<\/Location>\n<Directory  \/var\/www\/html\/moodle\/auth\/shibboleth\/index.php>\nAuthType shibboleth\nShibRequireSession On\nrequire valid-user\n<\/Directory>\n<\/VirtualHost>/' /etc/apache2/sites-available/default-ssl.conf
 
-sed -i 's/<\/VirtualHost>/<Directory \/var\/www\/html>\nAllowOverride ALL\n<\/Directory>\n<\/VirtualHost>/' /etc/apache2/sites-available/000-default.conf
+ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
 
 rsync -rc /tmp/mahara/htdocs/* "/var/www/html"
 chown -Rf www-data.www-data "/var/www/html"
