@@ -12,7 +12,7 @@ RUN apt-get -y upgrade
 
 RUN apt-get -y install \
     git \
-    supervisord
+    supervisor
 
 # Mahara requires PHP version 5.4 or later. The "magic_quotes" and "register_globals"
 # settings should be turned off (which is the default on modern PHP installations).
