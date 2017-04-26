@@ -40,6 +40,7 @@ RUN apt-get -y install \
 # enchant or pspell (optional; for TinyMCE spellcheck button)
 
 RUN apt-get -y install \
+    libapache2-mod-php \
     php \
     php-curl \
     php-gd \
