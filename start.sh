@@ -17,10 +17,26 @@ sed -i 's/magic_quotes_gpc.*/magic_quotes_gpc = off/g' /etc/php/7.0/apache2/php.
 sed -i 's/log_errors.*/log_errors on/g' /etc/php/7.0/apache2/php.ini
 sed -i 's/allow_call_time_pass_reference.*/allow_call_time_pass_reference off/g' /etc/php/7.0/apache2/php.ini
 
-ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
+ln -sf /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
 
 rsync -rc /tmp/mahara/htdocs/* "/var/www/html"
 chown -Rf www-data.www-data "/var/www/html"
+
+rm /var/www/html/config.php
+cp /var/www/html/config-dist.php /var/www/html/config.php
+
+#$cfg->dbtype   = 'postgres';
+#$cfg->dbhost   = 'localhost';
+#$cfg->dbport   = null; // Change if you are using a non-standard port number for your database
+#$cfg->dbname   = '';
+#$cfg->dbuser   = '';
+#$cfg->dbpass   = '';
+sed -i 's/\$cfg->dbtype.*/\$cfg->dbtype = \x27'${DB_TYPE}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbtype.*/\$cfg->dbhost = \x27'${DB_HOST}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbtype.*/\$cfg->dbport = \x27'${DB_PORT}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbtype.*/\$cfg->dbname = \x27'${DB_NAME}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbtype.*/\$cfg->dbuser = \x27'${DB_USER}'\x27/g' /var/www/html/config.php
+sed -i 's/\$cfg->dbtype.*/\$cfg->dbpass = \x27'${DB_PASS}'\x27/g' /var/www/html/config.php
 
 chmod +x /etc/apache2/foreground.sh
 
