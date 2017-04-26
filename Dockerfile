@@ -60,8 +60,7 @@ RUN apt-get -y install \
     make
 
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
-RUN cd /tmp/mahara; git checkout 17.04_STABLE
-RUN make css
+RUN cd /tmp/mahara; git checkout 17.04_STABLE; make css
 
 RUN rm /etc/apache2/sites-enabled/*
 
