@@ -17,6 +17,7 @@ sed -i 's/magic_quotes_gpc.*/magic_quotes_gpc = off/g' /etc/php/7.0/fpm/php.ini
 sed -i 's/log_errors.*/log_errors on/g' /etc/php/7.0/fpm/php.ini
 sed -i 's/allow_call_time_pass_reference.*/allow_call_time_pass_reference off/g' /etc/php/7.0/fpm/php.ini
 
+rm /etc/apache2/sites-enabled/*
 ln -s /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
 
 rsync -rc /tmp/mahara/htdocs/* "/var/www/html"
