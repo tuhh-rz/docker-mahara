@@ -50,6 +50,7 @@ RUN apt-get -y install \
     php-mcrypt \
     php-mysql \
     php-xml \
+    php-xmlrpc \
     php-bz2 \
     php-imagick \
     php-xmlrpc \
