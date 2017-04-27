@@ -48,4 +48,6 @@ chmod +x /etc/apache2/foreground.sh
 [ ! -d ${APACHE_RUN_DIR:-/var/run/apache2} ] && mkdir -p ${APACHE_RUN_DIR:-/var/run/apache2}
 [ ! -d ${APACHE_LOCK_DIR:-/var/lock/apache2} ] && mkdir -p ${APACHE_LOCK_DIR:-/var/lock/apache2} && chown ${APACHE_RUN_USER:-www-data} ${APACHE_LOCK_DIR:-/var/lock/apache2}
 
+/usr/sbin/a2enmod rewrite
+
 /usr/bin/supervisord -n -c /etc/supervisord.conf
