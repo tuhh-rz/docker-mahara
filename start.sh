@@ -52,6 +52,7 @@ sed -i 's/.*\$cfg->dbuser.*/\$cfg->dbuser = \x27'${DB_USER}'\x27;/g' /var/www/ht
 sed -i 's/.*\$cfg->dbpass.*/\$cfg->dbpass = \x27'${DB_PASS}'\x27;/g' /var/www/html/config.php
 sed -i 's/.*\$cfg->dataroot.*/\$cfg->dataroot = \x27'${DATA_ROOT//\//\\/}'\x27;/g' /var/www/html/config.php
 sed -i 's/.*\$cfg->wwwroot.*/\$cfg->wwwroot = \x27'${WWW_ROOT//\//\\/}'\x27;/g' /var/www/html/config.php
+sed -i 's/.*\$cfg->urlsecret.*/\$cfg->urlsecret = \x27'${URL_SECRET//\//\\/}'\x27;/g' /var/www/html/config.php
 sed -i 's/.*\$cfg->passwordsaltmain.*/\$cfg->passwordsaltmain = \x27'${PASSWORD_SALT_MAIN}'\x27;/g' /var/www/html/config.php
 
 chmod +x /etc/apache2/foreground.sh
