@@ -76,5 +76,7 @@ ADD ./start.sh /start.sh
 ADD ./foreground.sh /etc/apache2/foreground.sh
 ADD ./conf/supervisord.conf /etc/supervisord.conf
 
+RUN echo "* * * * * www-data /usr/bin/php /var/www/html/wp-cron.php" >> /etc/crontab
+
 EXPOSE 80 443
 CMD ["/bin/bash", "/start.sh"]
