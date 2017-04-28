@@ -1,5 +1,15 @@
 #!/bin/bash
 
+sed -i '/SSLCertificateFile/d' /etc/apache2/sites-available/default-ssl.conf
+sed -i '/SSLCertificateKeyFile/d' /etc/apache2/sites-available/default-ssl.conf
+sed -i '/SSLCertificateChainFile/d' /etc/apache2/sites-available/default-ssl.conf
+
+sed -i 's/SSLEngine.*/SSLEngine on\nSSLCertificateFile \/etc\/apache2\/ssl\/cert.pem\nSSLCertificateKeyFile \/etc\/apache2\/ssl\/private_key.pem\nSSLCertificateChainFile \/etc\/apache2\/ssl\/cert-chain.pem/' /etc/apache2/sites-available/default-ssl.conf
+
+ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/
+
+/usr/sbin/a2enmod ssl
+
 mkdir -p /var/local/majara
 chown -Rf www-data:www-data /var/local/mahara/
 
