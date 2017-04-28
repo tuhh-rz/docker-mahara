@@ -61,7 +61,8 @@ RUN apt-get -y install \
 RUN apt-get -y install \
     make \
     npm \
-    nodejs-legacy
+    nodejs-legacy \
+    cron
     
 RUN npm install -g gulp
 
