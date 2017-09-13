@@ -1,5 +1,7 @@
 FROM docker.rz.tu-harburg.de:5000/docker/apache2:latest
 
+ENV VERSION=17.04_STABLE
+
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
@@ -67,7 +69,7 @@ RUN apt-get -y install \
 RUN npm install -g gulp
 
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
-RUN cd /tmp/mahara; git checkout 17.04_STABLE; make css
+RUN cd /tmp/mahara; git checkout ${VERSION}; make css
 
 RUN rm /etc/apache2/sites-enabled/*
 
