@@ -62,4 +62,4 @@ chmod +x /etc/apache2/foreground.sh
 
 /usr/sbin/a2enmod rewrite
 
-/usr/bin/supervisord -n -c /etc/supervisord.conf
+exec /usr/bin/supervisord -n -c /etc/supervisord.conf
