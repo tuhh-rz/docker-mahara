@@ -1,6 +1,6 @@
 FROM docker.rz.tu-harburg.de:5000/docker/apache2:latest
 
-ENV VERSION=17.04_STABLE
+ENV VERSION=18.04_STABLE
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
