@@ -35,8 +35,12 @@ ln -sf /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
 rsync -rc /tmp/mahara/htdocs/* "/var/www/html"
 chown -Rf www-data.www-data "/var/www/html"
 
+cp -r /tmp/langpacks/* /var/local/mahara/langpacks/
+chown -Rf www-data.www-data "/var/local/mahara/langpacks/"
+
 rm /var/www/html/config.php
 cp /var/www/html/config-dist.php /var/www/html/config.php
+
 
 #$cfg->dbtype   = 'postgres';
 #$cfg->dbhost   = 'localhost';
