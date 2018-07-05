@@ -73,7 +73,7 @@ RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
 RUN cd /tmp/mahara; git checkout ${VERSION}; make css
 
 RUN wget http://langpacks.mahara.org/de-${VERSION}.tar.gz --directory-prefix /tmp/mahara/langpacks
-RUN tar xf /tmp/mahara/langpacks/de-18.04_STABLE.tar.gz -C /tmp/mahara/langpacks && rm /tmp/mahara/langpacks/de-18.04_STABLE.tar.gz
+RUN tar xf /tmp/mahara/langpacks/de-${VERSION}.tar.gz -C /tmp/mahara/langpacks && rm /tmp/mahara/langpacks/de-${VERSION}.tar.gz
 
 RUN rm /etc/apache2/sites-enabled/*
 
