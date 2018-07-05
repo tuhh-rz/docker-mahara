@@ -74,8 +74,6 @@ RUN cd /tmp/mahara; git checkout ${VERSION}; make css
 
 RUN wget http://langpacks.mahara.org/de-${VERSION}.tar.gz --directory-prefix /tmp/mahara/langpacks
 RUN tar xf /tmp/mahara/langpacks/de-18.04_STABLE.tar.gz -C /tmp/mahara/langpacks && rm /tmp/mahara/langpacks/de-18.04_STABLE.tar.gz
-RUN wget http://langpacks.mahara.org/en-${VERSION}.tar.gz --directory-prefix /tmp/mahara/langpacks
-RUN tar xf /tmp/mahara/langpacks/en-18.04_STABLE.tar.gz -C /tmp/mahara/langpacks && rm /tmp/mahara/langpacks/en-18.04_STABLE.tar.gz
 
 RUN rm /etc/apache2/sites-enabled/*
 
