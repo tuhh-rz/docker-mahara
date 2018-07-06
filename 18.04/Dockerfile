@@ -46,6 +46,7 @@ RUN apt-get -y install \
     php \
     php-curl \
     php-gd \
+    php-imap \
     php-json \
     php-ldap \
     php-mbstring \
@@ -57,8 +58,9 @@ RUN apt-get -y install \
     php-imagick \
     php-xmlrpc \
     php-memcache \
-    libphp-adodb \
-    php-pspell
+    php-pspell \
+    libphp-adodb
+    
 
 RUN apt-get -y install \
     make \
