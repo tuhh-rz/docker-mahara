@@ -59,6 +59,7 @@ RUN apt-get -y install \
     php-xmlrpc \
     php-memcache \
     php-pspell \
+    php-zip \
     libphp-adodb
     
 
