@@ -41,7 +41,7 @@ stages:
     - build
     - deploy
 
-build:18.10:
+.build:18.10:
     stage: build
     retry: 2
     only:
@@ -54,7 +54,7 @@ build:18.10:
     before_script: *build_before_script_definition
     script: *build_script_definition
 
-deploy:18.10:
+.deploy:18.10:
     stage: deploy
     tags:
         - deploy
@@ -65,7 +65,7 @@ deploy:18.10:
         VARIANT: ''
     script: *deploy_script_definition
 
-build:branches:18.10:
+.build:branches:18.10:
     stage: build
     retry: 2
     only:
@@ -80,7 +80,7 @@ build:branches:18.10:
     before_script: *build_branches_before_script_definition
     script: *build_branches_script_definition
 
-deploy:branches:18.10:
+.deploy:branches:18.10:
     stage: deploy
     tags:
         - deploy
@@ -92,6 +92,7 @@ deploy:branches:18.10:
         VERSION: '18.10'
         VARIANT: ''
     script: *deploy_branches_script_definition
+    
 build:18.04:
     stage: build
     retry: 2
