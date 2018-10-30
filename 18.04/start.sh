@@ -65,4 +65,6 @@ chmod +x /etc/apache2/foreground.sh
 
 /usr/sbin/a2enmod rewrite
 
+su -s /bin/sh -c 'php /var/www/html/admin/cli/upgrade.php' www-data
+
 exec /usr/bin/supervisord -n -c /etc/supervisord.conf
