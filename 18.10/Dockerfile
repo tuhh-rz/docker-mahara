@@ -50,7 +50,6 @@ RUN apt-get -y install \
     php-json \
     php-ldap \
     php-mbstring \
-    php-mcrypt \
     php-mysql \
     php-xml \
     php-xmlrpc \
@@ -66,7 +65,7 @@ RUN apt-get -y install \
 RUN apt-get -y install \
     make \
     npm \
-    nodejs-legacy \
+    nodejs \
     cron \
     wget
 
