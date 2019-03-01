@@ -1,4 +1,7 @@
 variables:
+    # we need lower case!!!
+    CI_PROJECT_NAMESPACE: docker
+
     CONTAINER_RELEASE_IMAGE: docker.rz.tu-harburg.de:5000/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
     LATEST_VERSION: '17.04'
 
