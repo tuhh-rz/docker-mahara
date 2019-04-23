@@ -3,7 +3,7 @@ variables:
     CI_PROJECT_NAMESPACE: docker
 
     CONTAINER_RELEASE_IMAGE: docker.rz.tu-harburg.de:5000/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-    LATEST_VERSION: '18.10'
+    LATEST_VERSION: '19.04'
 
 .build_script_template:
     script:  &build_script_definition
@@ -40,6 +40,58 @@ variables:
 stages:
     - build
     - deploy
+    
+build:19.04:
+    stage: build
+    retry: 2
+    only:
+        - master
+    tags:
+        - build
+    variables:
+        VERSION: '19.04'
+        VARIANT: ''
+    before_script: *build_before_script_definition
+    script: *build_script_definition
+
+deploy:19.04:
+    stage: deploy
+    tags:
+        - deploy
+    only:
+        - master
+    variables:
+        VERSION: '19.04'
+        VARIANT: ''
+    script: *deploy_script_definition
+
+build:branches:19.04:
+    stage: build
+    retry: 2
+    only:
+        - branches
+    except:
+        - master
+    tags:
+        - build
+    variables:
+        VERSION: '19.04'
+        VARIANT: ''
+    before_script: *build_branches_before_script_definition
+    script: *build_branches_script_definition
+
+deploy:branches:19.04:
+    stage: deploy
+    tags:
+        - deploy
+    only:
+        - branches
+    except:
+        - master
+    variables:
+        VERSION: '19.04'
+        VARIANT: ''
+    script: *deploy_branches_script_definition
 
 build:18.10:
     stage: build
