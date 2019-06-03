@@ -1,5 +1,5 @@
 #FROM docker.rz.tu-harburg.de:5000/docker/apache2:latest
-FROM ubuntu:18.04
+FROM ubuntu:16.04
 
 ENV VERSION=18.04_STABLE
 
