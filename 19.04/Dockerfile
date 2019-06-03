@@ -1,4 +1,5 @@
-FROM docker.rz.tu-harburg.de:5000/docker/apache2:ubuntu18.04
+#FROM docker.rz.tu-harburg.de:5000/rzt/images/apache2:ubuntu18.04
+FROM ubuntu:18.04
 
 ENV VERSION=19.04_STABLE
 
@@ -12,7 +13,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get -y upgrade
 
-RUN apt-get -y install \
+RUN apt-get -y install \RUN apt-get -y install \
+    apache2 \
     git \
     supervisor
 

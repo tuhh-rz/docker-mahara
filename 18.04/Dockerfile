@@ -1,4 +1,5 @@
-FROM docker.rz.tu-harburg.de:5000/docker/apache2:latest
+#FROM docker.rz.tu-harburg.de:5000/docker/apache2:latest
+FROM ubuntu:18.04
 
 ENV VERSION=18.04_STABLE
 
@@ -13,6 +14,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 RUN apt-get -y install \
+    apache2 \
     git \
     supervisor
 
