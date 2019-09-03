@@ -16,6 +16,7 @@ RUN apt-get -y upgrade
 RUN apt-get -y install \
     apache2 \
     git \
+    rsync \
     supervisor
 
 # Mahara requires PHP version 5.4 or later. The "magic_quotes" and "register_globals"
