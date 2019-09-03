@@ -10,7 +10,7 @@ ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/
 
 /usr/sbin/a2enmod ssl
 
-mkdir -p /var/local/majara
+mkdir -p /var/local/mahara
 chown -Rf www-data:www-data /var/local/mahara/
 
 chown -Rf www-data.www-data /var/www/html/
