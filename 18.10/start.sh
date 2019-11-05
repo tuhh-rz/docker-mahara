@@ -10,10 +10,7 @@ ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/
 
 /usr/sbin/a2enmod ssl
 
-mkdir -p /var/local/majara
-chown -Rf www-data:www-data /var/local/mahara/
-
-chown -Rf www-data.www-data /var/www/html/
+mkdir -p /var/local/mahara
 
 #register_globals off
 #magic_quotes_runtime off
@@ -33,13 +30,15 @@ sed -i 's/allow_call_time_pass_reference.*/allow_call_time_pass_reference off/g'
 ln -sf /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
 
 rsync -rc /tmp/mahara/htdocs/* "/var/www/html"
-chown -Rf www-data.www-data "/var/www/html"
 
 cp -r /tmp/langpacks/* /var/local/mahara/langpacks/
-chown -Rf www-data.www-data "/var/local/mahara/langpacks/"
 
 rm /var/www/html/config.php
 cp /var/www/html/config-dist.php /var/www/html/config.php
+
+
+find /var/local/mahara ! -user www-data -exec chown www-data: {} \;
+find /var/www/html ! -user www-data -exec chown www-data: {} \;
 
 #$cfg->dbtype   = 'postgres';
 #$cfg->dbhost   = 'localhost';
@@ -60,8 +59,8 @@ sed -i 's/.*\$cfg->passwordsaltmain.*/\$cfg->passwordsaltmain = \x27'${PASSWORD_
 
 chmod +x /etc/apache2/foreground.sh
 
-[ ! -d ${APACHE_RUN_DIR:-/var/run/apache2} ] && mkdir -p ${APACHE_RUN_DIR:-/var/run/apache2}
-[ ! -d ${APACHE_LOCK_DIR:-/var/lock/apache2} ] && mkdir -p ${APACHE_LOCK_DIR:-/var/lock/apache2} && chown ${APACHE_RUN_USER:-www-data} ${APACHE_LOCK_DIR:-/var/lock/apache2}
+[ ! -d "${APACHE_RUN_DIR:-/var/run/apache2}" ] && mkdir -p "${APACHE_RUN_DIR:-/var/run/apache2}"
+[ ! -d "${APACHE_LOCK_DIR:-/var/lock/apache2}" ] && mkdir -p "${APACHE_LOCK_DIR:-/var/lock/apache2}" && chown "${APACHE_RUN_USER:-www-data}" "${APACHE_LOCK_DIR:-/var/lock/apache2}"
 
 /usr/sbin/a2enmod rewrite
 

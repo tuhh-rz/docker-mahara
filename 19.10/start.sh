@@ -11,9 +11,6 @@ ln -s /etc/apache2/sites-available/default-ssl.conf /etc/apache2/sites-enabled/
 /usr/sbin/a2enmod ssl
 
 mkdir -p /var/local/mahara
-chown -Rf www-data:www-data /var/local/mahara/
-
-chown -Rf www-data.www-data /var/www/html/
 
 #register_globals off
 #magic_quotes_runtime off
@@ -33,13 +30,15 @@ sed -i 's/allow_call_time_pass_reference.*/allow_call_time_pass_reference off/g'
 ln -sf /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
 
 rsync -rc /tmp/mahara/htdocs/* "/var/www/html"
-chown -Rf www-data.www-data "/var/www/html"
 
 cp -r /tmp/langpacks/* /var/local/mahara/langpacks/
-chown -Rf www-data.www-data "/var/local/mahara/langpacks/"
 
 rm /var/www/html/config.php
 cp /var/www/html/config-dist.php /var/www/html/config.php
+
+
+find /var/local/mahara ! -user www-data -exec chown www-data: {} \;
+find /var/www/html ! -user www-data -exec chown www-data: {} \;
 
 #$cfg->dbtype   = 'postgres';
 #$cfg->dbhost   = 'localhost';
