@@ -36,7 +36,61 @@ variables:
 stages:
     - build
     - deploy
-    
+
+build:19.10:
+    stage: build
+    retry: 2
+    only:
+        - master
+    tags:
+        - build
+    variables:
+        VERSION: '19.10'
+        VARIANT: ''
+    before_script: *build_before_script_definition
+    script: *build_script_definition
+
+deploy:19.10:
+    stage: deploy
+    needs: ["build:19.10"]
+    tags:
+        - deploy
+    only:
+        - master
+    variables:
+        VERSION: '19.10'
+        VARIANT: ''
+    script: *deploy_script_definition
+
+build:branches:19.10:
+    stage: build
+    retry: 2
+    only:
+        - branches
+    except:
+        - master
+    tags:
+        - build
+    variables:
+        VERSION: '19.10'
+        VARIANT: ''
+    before_script: *build_branches_before_script_definition
+    script: *build_branches_script_definition
+
+deploy:branches:19.10:
+    stage: deploy
+    needs: ["build:branches:19.10"]
+    tags:
+        - deploy
+    only:
+        - branches
+    except:
+        - master
+    variables:
+        VERSION: '19.10'
+        VARIANT: ''
+    script: *deploy_branches_script_definition
+
 build:19.04:
     stage: build
     retry: 2
@@ -52,6 +106,7 @@ build:19.04:
 
 deploy:19.04:
     stage: deploy
+    needs: ["build:19.04"]
     tags:
         - deploy
     only:
@@ -78,6 +133,7 @@ build:branches:19.04:
 
 deploy:branches:19.04:
     stage: deploy
+    needs: ["build:branches:19.04"]
     tags:
         - deploy
     only:
@@ -104,6 +160,7 @@ build:18.10:
 
 deploy:18.10:
     stage: deploy
+    needs: ["build:18.10"]
     tags:
         - deploy
     only:
@@ -130,6 +187,7 @@ build:branches:18.10:
 
 deploy:branches:18.10:
     stage: deploy
+    needs: ["build:branches:18.10"]
     tags:
         - deploy
     only:
@@ -140,7 +198,7 @@ deploy:branches:18.10:
         VERSION: '18.10'
         VARIANT: ''
     script: *deploy_branches_script_definition
-    
+
 build:18.04:
     stage: build
     retry: 2
@@ -156,6 +214,7 @@ build:18.04:
 
 deploy:18.04:
     stage: deploy
+    needs: ["build:18.04"]
     tags:
         - deploy
     only:
@@ -182,6 +241,7 @@ build:branches:18.04:
 
 deploy:branches:18.04:
     stage: deploy
+    needs: ["build:branches:18.04"]
     tags:
         - deploy
     only:
