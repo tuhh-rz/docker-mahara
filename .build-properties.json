@@ -1,0 +1,16 @@
+{
+  "docker-tags": {
+    "18.04": {
+      "build-branch": "master"
+    },
+    "18.10": {
+      "build-branch": "master"
+    },
+    "19.04": {
+      "build-branch": "master"
+    },
+    "19.10": {
+      "build-branch": "master"
+    }
+  }
+}
