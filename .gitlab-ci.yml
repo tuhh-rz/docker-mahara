@@ -1,11 +1,21 @@
 variables:
     CONTAINER_RELEASE_IMAGE: docker.rz.tu-harburg.de:5000/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME
-    LATEST_VERSION: '19.04'
+    LATEST_VERSION: '20.04'
 
 .build_script_template:
-    script:  &build_script_definition
-        - pwd
-        - sudo docker build --no-cache --pull -t "${CONTAINER_RELEASE_IMAGE}":"${VERSION}${VARIANT:+-$VARIANT}" "${VERSION}"/"${VARIANT}"
+  script: &build_script_definition
+    - pwd
+    - key="Mahara ${VERSION}"
+
+    - version=${VERSION}
+    # - version=$(curl -s https://cgi.tu-harburg.de/~rztwww/Software/program_file.json | jq --arg KEY "$key" --raw-output '.[$KEY] | .version')
+    # - if [[ -z $version ]]; then exit 1; fi
+    # - version=$(echo $version | sed -e 's/%2B/+/g')
+
+    # - download=$(curl -s https://cgi.tu-harburg.de/~rztwww/Software/program_file.json | jq --arg KEY "$key" --raw-output '.[$KEY] | .download')
+    # - if [[ -z $download ]]; then exit 1; fi
+
+    - sudo docker build --build-arg DOWNLOAD="${download}" --build-arg VERSION="${version}" --no-cache --pull -t "${CONTAINER_RELEASE_IMAGE}":"${VERSION}${VARIANT:+-$VARIANT}" "${VERSION}"/"${VARIANT}"
 
 .build_before_script_template:
     before_script:  &build_before_script_definition
@@ -37,7 +47,7 @@ stages:
     - build
     - deploy
 
-build:19.10:
+build:20.04:
     stage: build
     retry: 2
     only:
@@ -45,7 +55,61 @@ build:19.10:
     tags:
         - build
     variables:
-        VERSION: '19.10'
+        VERSION: '20.04'
+        VARIANT: ''
+    before_script: *build_before_script_definition
+    script: *build_script_definition
+
+deploy:20.04:
+    stage: deploy
+    needs: ["build:20.04"]
+    tags:
+        - deploy
+    only:
+        - master
+    variables:
+        VERSION: '20.04'
+        VARIANT: ''
+    script: *deploy_script_definition
+
+build:branches:20.04:
+    stage: build
+    retry: 2
+    only:
+        - branches
+    except:
+        - master
+    tags:
+        - build
+    variables:
+        VERSION: '20.04'
+        VARIANT: ''
+    before_script: *build_branches_before_script_definition
+    script: *build_branches_script_definition
+
+deploy:branches:20.04:
+    stage: deploy
+    needs: ["build:branches:20.04"]
+    tags:
+        - deploy
+    only:
+        - branches
+    except:
+        - master
+    variables:
+        VERSION: '20.04'
+        VARIANT: ''
+    script: *deploy_branches_script_definition
+
+build:19.04:
+    stage: build
+    retry: 2
+    only:
+        - master
+    tags:
+        - build
+    variables:
+        VERSION: '19.04'
         VARIANT: ''
     before_script: *build_before_script_definition
     script: *build_script_definition
@@ -88,114 +152,6 @@ deploy:branches:19.10:
         - master
     variables:
         VERSION: '19.10'
-        VARIANT: ''
-    script: *deploy_branches_script_definition
-
-build:19.04:
-    stage: build
-    retry: 2
-    only:
-        - master
-    tags:
-        - build
-    variables:
-        VERSION: '19.04'
-        VARIANT: ''
-    before_script: *build_before_script_definition
-    script: *build_script_definition
-
-deploy:19.04:
-    stage: deploy
-    needs: ["build:19.04"]
-    tags:
-        - deploy
-    only:
-        - master
-    variables:
-        VERSION: '19.04'
-        VARIANT: ''
-    script: *deploy_script_definition
-
-build:branches:19.04:
-    stage: build
-    retry: 2
-    only:
-        - branches
-    except:
-        - master
-    tags:
-        - build
-    variables:
-        VERSION: '19.04'
-        VARIANT: ''
-    before_script: *build_branches_before_script_definition
-    script: *build_branches_script_definition
-
-deploy:branches:19.04:
-    stage: deploy
-    needs: ["build:branches:19.04"]
-    tags:
-        - deploy
-    only:
-        - branches
-    except:
-        - master
-    variables:
-        VERSION: '19.04'
-        VARIANT: ''
-    script: *deploy_branches_script_definition
-
-build:18.10:
-    stage: build
-    retry: 2
-    only:
-        - master
-    tags:
-        - build
-    variables:
-        VERSION: '18.10'
-        VARIANT: ''
-    before_script: *build_before_script_definition
-    script: *build_script_definition
-
-deploy:18.10:
-    stage: deploy
-    needs: ["build:18.10"]
-    tags:
-        - deploy
-    only:
-        - master
-    variables:
-        VERSION: '18.10'
-        VARIANT: ''
-    script: *deploy_script_definition
-
-build:branches:18.10:
-    stage: build
-    retry: 2
-    only:
-        - branches
-    except:
-        - master
-    tags:
-        - build
-    variables:
-        VERSION: '18.10'
-        VARIANT: ''
-    before_script: *build_branches_before_script_definition
-    script: *build_branches_script_definition
-
-deploy:branches:18.10:
-    stage: deploy
-    needs: ["build:branches:18.10"]
-    tags:
-        - deploy
-    only:
-        - branches
-    except:
-        - master
-    variables:
-        VERSION: '18.10'
         VARIANT: ''
     script: *deploy_branches_script_definition
 

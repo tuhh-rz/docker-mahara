@@ -1,7 +1,13 @@
 #FROM docker.rz.tu-harburg.de:5000/rzt/images/apache2:ubuntu18.04
 FROM ubuntu:18.04
 
-ENV VERSION=19.10_STABLE
+ARG VERSION=${VERSION}
+ENV VERSION=$VERSION
+RUN echo $VERSION
+
+ARG DOWNLOAD=${DOWNLOAD}
+ENV DOWNLOAD=$DOWNLOAD
+RUN echo $DOWNLOAD
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
@@ -75,7 +81,7 @@ RUN apt-get -y install \
 RUN npm install -g gulp
 
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
-RUN cd /tmp/mahara; git checkout ${VERSION}; make css
+RUN cd /tmp/mahara; git checkout ${VERSION}_STABLE; make css
 
 RUN wget https://langpacks.mahara.org/de-master.tar.gz --directory-prefix /tmp/langpacks
 RUN tar xf /tmp/langpacks/de-master.tar.gz -C /tmp/langpacks && rm /tmp/langpacks/de-master.tar.gz

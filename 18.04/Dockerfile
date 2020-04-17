@@ -1,7 +1,13 @@
 #FROM docker.rz.tu-harburg.de:5000/docker/apache2:latest
 FROM ubuntu:16.04
 
-ENV VERSION=18.04_STABLE
+ARG VERSION=${VERSION}
+ENV VERSION=$VERSION
+RUN echo $VERSION
+
+ARG DOWNLOAD=${DOWNLOAD}
+ENV DOWNLOAD=$DOWNLOAD
+RUN echo $DOWNLOAD
 
 # Keep upstart from complaining
 RUN dpkg-divert --local --rename --add /sbin/initctl
@@ -64,7 +70,7 @@ RUN apt-get -y install \
     php-pspell \
     php-zip \
     libphp-adodb
-    
+
 
 RUN apt-get -y install \
     make \
@@ -72,11 +78,11 @@ RUN apt-get -y install \
     nodejs-legacy \
     cron \
     wget
-    
+
 RUN npm install -g gulp
 
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
-RUN cd /tmp/mahara; git checkout ${VERSION}; make css
+RUN cd /tmp/mahara; git checkout ${VERSION}_STABLE; make css
 
 RUN wget https://langpacks.mahara.org/de-master.tar.gz --directory-prefix /tmp/langpacks
 RUN tar xf /tmp/langpacks/de-master.tar.gz -C /tmp/langpacks && rm /tmp/langpacks/de-master.tar.gz
