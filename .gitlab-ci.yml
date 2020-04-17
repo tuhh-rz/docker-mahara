@@ -7,7 +7,7 @@ variables:
     - pwd
     - key="Mahara ${VERSION}"
 
-    - version=${VERSION}
+    - version="${VERSION}"
     # - version=$(curl -s https://cgi.tu-harburg.de/~rztwww/Software/program_file.json | jq --arg KEY "$key" --raw-output '.[$KEY] | .version')
     # - if [[ -z $version ]]; then exit 1; fi
     # - version=$(echo $version | sed -e 's/%2B/+/g')
@@ -101,7 +101,7 @@ deploy:branches:20.04:
         VARIANT: ''
     script: *deploy_branches_script_definition
 
-build:19.04:
+build:19.10:
     stage: build
     retry: 2
     only:
@@ -109,7 +109,7 @@ build:19.04:
     tags:
         - build
     variables:
-        VERSION: '19.04'
+        VERSION: '19.10'
         VARIANT: ''
     before_script: *build_before_script_definition
     script: *build_script_definition
