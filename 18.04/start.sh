@@ -37,8 +37,8 @@ rm /var/www/html/config.php
 cp /var/www/html/config-dist.php /var/www/html/config.php
 
 
-find /var/local/mahara ! -user www-data -exec chown www-data: {} \;
-find /var/www/html ! -user www-data -exec chown www-data: {} \;
+find /var/local/mahara ! -user www-data -exec chown www-data: {} +
+find /var/www/html ! -user www-data -exec chown www-data: {} +
 
 #$cfg->dbtype   = 'postgres';
 #$cfg->dbhost   = 'localhost';
