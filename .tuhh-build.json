@@ -19,13 +19,10 @@
         "18.04": {
             "action": "build"
         },
-        "18.10": {
-            "action": "build"
-        },
-        "19.04": {
-            "action": "build"
-        },
         "19.10": {
+            "action": "build"
+        },
+        "20.04": {
             "action": "build"
         }
     }
