@@ -3,6 +3,7 @@
     "version-check": {
         "active": false,
         "master_key": "Mahara",
+        "sub_key": "Mahara",
         "version_digits_in_key": 2
     },
 
