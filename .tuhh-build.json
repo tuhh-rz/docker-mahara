@@ -1,30 +1,33 @@
 {
-    "active": true,
-    "version-check": {
-        "active": false,
-        "master_key": "Mahara",
-        "sub_key": "Mahara",
-        "version_digits_in_key": 2
+  "active": true,
+  "version-check": {
+    "active": false,
+    "master_key": "Mahara",
+    "sub_key": "Mahara",
+    "version_digits_in_key": 2
+  },
+  "registries": [
+    {
+      "name": "collaborating.tuhh.de:5005",
+      "state": "ignore"
     },
-
-    "registries": [{
-            "name": "collaborating.tuhh.de:5005",
-            "state": "ignore"
-        },
-        {
-            "name": "docker.rz.tu-harburg.de:5000",
-            "state": "present"
-        }
-    ],
-    "image-tags": {
-        "18.04": {
-            "action": "build"
-        },
-        "19.10": {
-            "action": "build"
-        },
-        "20.04": {
-            "action": "build"
-        }
+    {
+      "name": "docker.rz.tu-harburg.de:5000",
+      "state": "present"
     }
+  ],
+  "image-tags": {
+    "18.04": {
+      "action": "build"
+    },
+    "19.10": {
+      "action": "build"
+    },
+    "20.04": {
+      "action": "build"
+    }
+  },
+  "upgrade-check": {
+    "active": true
+  }
 }
