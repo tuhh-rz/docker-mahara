@@ -1,4 +1,4 @@
-#FROM docker.rz.tu-harburg.de:5000/docker/apache2:latest
+#FROM docker.rz.tu-harburg.de/docker/apache2:latest
 FROM ubuntu:16.04
 
 ARG VERSION=${VERSION}
@@ -20,10 +20,10 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 RUN apt-get -y install \
-    apache2 \
-    git \
-    rsync \
-    supervisor
+  apache2 \
+  git \
+  rsync \
+  supervisor
 
 # Mahara requires PHP version 5.4 or later. The "magic_quotes" and "register_globals"
 # settings should be turned off (which is the default on modern PHP installations).
@@ -51,33 +51,33 @@ RUN apt-get -y install \
 # enchant or pspell (optional; for TinyMCE spellcheck button)
 
 RUN apt-get -y install \
-    libapache2-mod-php \
-    php \
-    php-curl \
-    php-gd \
-    php-imap \
-    php-json \
-    php-ldap \
-    php-mbstring \
-    php-mcrypt \
-    php-mysql \
-    php-xml \
-    php-xmlrpc \
-    php-bz2 \
-    php-imagick \
-    php-xmlrpc \
-    php-memcache \
-    php-pspell \
-    php-zip \
-    libphp-adodb
+  libapache2-mod-php \
+  php \
+  php-curl \
+  php-gd \
+  php-imap \
+  php-json \
+  php-ldap \
+  php-mbstring \
+  php-mcrypt \
+  php-mysql \
+  php-xml \
+  php-xmlrpc \
+  php-bz2 \
+  php-imagick \
+  php-xmlrpc \
+  php-memcache \
+  php-pspell \
+  php-zip \
+  libphp-adodb
 
 
 RUN apt-get -y install \
-    make \
-    npm \
-    nodejs-legacy \
-    cron \
-    wget
+  make \
+  npm \
+  nodejs-legacy \
+  cron \
+  wget
 
 RUN npm install -g gulp
 
