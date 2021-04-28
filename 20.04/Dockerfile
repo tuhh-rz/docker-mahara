@@ -91,9 +91,6 @@ RUN npm install -g gulp
 RUN git clone https://git.mahara.org/mahara/mahara.git /tmp/mahara
 RUN cd /tmp/mahara; git checkout ${VERSION}_STABLE; make css
 
-RUN wget https://langpacks.mahara.org/de-master.tar.gz --directory-prefix /tmp/langpacks
-RUN tar xf /tmp/langpacks/de-master.tar.gz -C /tmp/langpacks && rm /tmp/langpacks/de-master.tar.gz
-
 RUN rm /etc/apache2/sites-enabled/*
 
 ADD ./conf/default.conf /etc/apache2/sites-available

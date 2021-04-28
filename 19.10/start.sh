@@ -31,7 +31,7 @@ ln -sf /etc/apache2/sites-available/default.conf /etc/apache2/sites-enabled/
 
 rsync -rc /tmp/mahara/htdocs/* "/var/www/html"
 
-cp -r /tmp/langpacks/* /var/local/mahara/langpacks/
+php /var/www/html/admin/cli/sync_langpacks.php -l=de -b=false
 
 rm /var/www/html/config.php
 cp /var/www/html/config-dist.php /var/www/html/config.php
