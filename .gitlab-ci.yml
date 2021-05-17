@@ -50,8 +50,10 @@ stages:
 build:20.04:
   stage: build
   retry: 2
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      changes:
+        - 20.04/**/*
   tags:
     - build
   variables:
@@ -65,8 +67,10 @@ deploy:20.04:
   needs: ["build:20.04"]
   tags:
     - deploy
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      changes:
+        - 20.04/**/*
   variables:
     VERSION: "20.04"
     VARIANT: ""
@@ -75,10 +79,10 @@ deploy:20.04:
 build:branches:20.04:
   stage: build
   retry: 2
-  only:
-    - branches
-  except:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME != "master"'
+      changes:
+        - 20.04/**/*
   tags:
     - build
   variables:
@@ -92,10 +96,10 @@ deploy:branches:20.04:
   needs: ["build:branches:20.04"]
   tags:
     - deploy
-  only:
-    - branches
-  except:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME != "master"'
+      changes:
+        - 20.04/**/*
   variables:
     VERSION: "20.04"
     VARIANT: ""
@@ -104,8 +108,10 @@ deploy:branches:20.04:
 build:19.10:
   stage: build
   retry: 2
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      changes:
+        - 19.10/**/*
   tags:
     - build
   variables:
@@ -119,8 +125,10 @@ deploy:19.10:
   needs: ["build:19.10"]
   tags:
     - deploy
-  only:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "master"'
+      changes:
+        - 19.10/**/*
   variables:
     VERSION: "19.10"
     VARIANT: ""
@@ -129,10 +137,10 @@ deploy:19.10:
 build:branches:19.10:
   stage: build
   retry: 2
-  only:
-    - branches
-  except:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME != "master"'
+      changes:
+        - 19.10/**/*
   tags:
     - build
   variables:
@@ -146,10 +154,10 @@ deploy:branches:19.10:
   needs: ["build:branches:19.10"]
   tags:
     - deploy
-  only:
-    - branches
-  except:
-    - master
+  rules:
+    - if: '$CI_COMMIT_REF_NAME != "master"'
+      changes:
+        - 19.10/**/*
   variables:
     VERSION: "19.10"
     VARIANT: ""
