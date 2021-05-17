@@ -99,6 +99,7 @@ ADD ./foreground.sh /etc/apache2/foreground.sh
 ADD ./conf/supervisord.conf /etc/supervisord.conf
 
 RUN echo "* * * * * www-data /usr/bin/php /var/www/html/lib/cron.php" >> /etc/crontab
+RUN echo "5 * * * * root /usr/bin/php -r 'session_start(); session_gc(); session_destroy();'" >>/etc/crontab
 
 EXPOSE 80 443
 CMD ["/bin/bash", "/start.sh"]
