@@ -17,9 +17,6 @@
     }
   ],
   "image-tags": {
-    "18.04": {
-      "action": "build"
-    },
     "19.10": {
       "action": "build"
     },
